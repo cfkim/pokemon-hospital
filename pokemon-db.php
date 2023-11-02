@@ -29,19 +29,6 @@ function getAllPokemon()
   $statement->closeCursor();
   return $results;
 }
-  
-// function updatePokemonByName($name, $major, $year)
-// {
-//   global $db;
-//   $query = "update friends set major=:major, year=:year where name=:name";
-
-//   $statement = $db->prepare($query); 
-//   $statement->bindValue(':name', $name);
-//   $statement->bindValue(':major', $major);
-//   $statement->bindValue(':year', $year);
-//   $statement->execute();
-//   $statement->closeCursor();
-// }
 
 function deletePokemonByID($pokemon_ID)
 {

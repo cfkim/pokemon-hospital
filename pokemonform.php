@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <tr style="background-color:#B0B0B0">
     
     <!--<th width="30%">Name-->
+    <th>ID
     <th>Name
     <th>Weight
     <th>Type
@@ -92,24 +93,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   <?php foreach ($list_of_pokemon as $pokemon): ?>
   <tr>
+     <td><?php echo $pokemon['pokemon_ID']; ?></td>
      <td><?php echo $pokemon['name']; ?></td>
      <td><?php echo $pokemon['weight']; ?></td>        
      <td><?php echo $pokemon['type']; ?></td> 
      <td><?php echo $pokemon['date_of_birth']; ?></td> 
      <td><?php echo $pokemon['last_visit']; ?></td> 
-     <td><?php echo $pokemon['insurance']; ?></td> 
-     <!-- <td>
-        <form action="pokemonform.php" method="post">
-          <input type="submit" value="Update" name="updateBtn" class="btn btn-secondary"/></td>
-          <input type="hidden" name="friend_to_update" value="<?php echo $friend['name']; ?>"/>
-          <input type="hidden" name="major_to_update" value="<?php echo $friend['major']; ?>"/>
-          <input type="hidden" name="year_to_update" value="<?php echo $friend['year']; ?>"/>
-        </form>
-     <td> -->
+     <td><?php echo $pokemon['insurance']; ?></td>
     <td>
       <form action="pokemonform.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
-        <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['name']; ?>"/>
+        <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
       </form>
     </td>               
   </tr>
