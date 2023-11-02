@@ -3,7 +3,7 @@ function addPokemon($name, $weight, $type, $date_of_birth, $last_visit, $insuran
 {
   global $db; 
 
-  $query = "insert into pokemon values (:name, :weight, :type, :date_of_birth, :last_visit, :insurance) ";
+  $query = "insert into pokemon (name, weight, type, date_of_birth, last_visit, insurance) values (:name, :weight, :type, :date_of_birth, :last_visit, :insurance) ";
   // prepare: 
   // 1. prepare (compile) 
   // 2. bindValue + exe

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
    else if (!empty($_POST['addBtn']))
    {
-      addPokemon($_POST['pokemonName'], $_POST['name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
+      addPokemon($_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
       $list_of_pokemon = getAllPokemon();    
    }
 }
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <form name="mainForm" action="pokemonform.php" method="post">   
       <div class="row mb-3 mx-3">
         Pokemon name:
-        <input type="text" class="form-control" name="pokemonname" required value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
+        <input type="text" class="form-control" name="pokemon_name" required value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
       </div>
       <div class="row mb-3 mx-3">
         Weight:
@@ -55,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       </div>  
       <div class="row mb-3 mx-3">
         Date of Birth:
-        <input type="date" class="form-control" name="dob" required value="<?php echo $_POST['dob_to_update'];?>"/>        
+        <input type="date" class="form-control" name="date_of_birth" required value="<?php echo $_POST['date_of_birth_to_update'];?>"/>        
       </div>
       <div class="row mb-3 mx-3">
         Last Visit:
-        <input type="date" class="form-control" name="lastvisit" required value="<?php echo $_POST['last_visit_to_update'];?>"/>        
+        <input type="date" class="form-control" name="last_visit" required value="<?php echo $_POST['last_visit_to_update'];?>"/>        
       </div>  
       <div class="row mb-3 mx-3">
         Insurance:
