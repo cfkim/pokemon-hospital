@@ -35,9 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </head>
 
 <body>
-<?php
-  include("header.html");
-?>
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>  
 
@@ -75,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     </form>     
 
 <hr/>
-<h3>List of pokem</h3>
+<h3>List of Patients</h3>
 <div class="row justify-content-center">  
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
