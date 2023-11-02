@@ -17,6 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       addPokemon($_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
       $list_of_pokemon = getAllPokemon();    
    }
+   else if (!empty($_POST['updateBtn']))
+   {
+      echo $_POST['pokemon_to_update'];
+   }
+   else if (!empty($_POST['confirmUpdateBtn']))
+   {
+    updatePokemonByID($_POST['pokemon_ID'], $_POST['name'], $_POST['weight'], $_POST['type'], $_POST['insurance']);
+    $list_of_pokemon = getAllPokemon();
 }
 
 ?>
@@ -69,6 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <input type="submit" value="Add Patient" name="addBtn" 
                 class="btn btn-primary" title="Add a patient to the pokemon health center" />
       </div>
+      <div class="row mb-3 mx-3">
+        <input type="submit" value="Confirm Update" name="confirmUpdateBtn"
+                class="btn btn-secondary" title="Update a pokemon into pokemon table" />
+      </div>
     </form>     
 
 <hr/>
@@ -100,6 +112,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      <td><?php echo $pokemon['date_of_birth']; ?></td> 
      <td><?php echo $pokemon['last_visit']; ?></td> 
      <td><?php echo $pokemon['insurance']; ?></td>
+    <td>
+        <form action="pokemonform.php" method="post">
+          <input type="submit" value="Update" name="updateBtn" class="btn btn-secondary"/></td>
+          <input type="hidden" name="pokemon_ID" value="<?php echo pokemon['pokemon_ID']; ?>"/>
+          <input type="hidden" name="name_to_update" value="<?php echo pokemon['name']; ?>"/>
+          <input type="hidden" name="weight_to_update" value="<?php echo $pokemon['weight']; ?>"/>
+          <input type="hidden" name="type_to_update" value="<?php echo $pokemon['type']; ?>"/>
+          <input type="hidden" name="insurance_to_update" value="<?php echo $pokemon['insurance']; ?>"/>
+        </form>
     <td>
       <form action="pokemonform.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>

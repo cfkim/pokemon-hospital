@@ -1,14 +1,14 @@
 <?php
-function addPokemon($name, $weight, $type, $date_of_birth, $last_visit, $insurance) 
+function addPokemon($name, $weight, $type, $date_of_birth, $last_visit, $insurance)
 {
-  global $db; 
+  global $db;
 
   $query = "insert into pokemon (name, weight, type, date_of_birth, last_visit, insurance) values (:name, :weight, :type, :date_of_birth, :last_visit, :insurance) ";
-  // prepare: 
-  // 1. prepare (compile) 
+  // prepare:
+  // 1. prepare (compile)
   // 2. bindValue + exe
 
-  $statement = $db->prepare($query); 
+  $statement = $db->prepare($query);
   $statement->bindValue(':name', $name);
   $statement->bindValue(':weight', $weight);
   $statement->bindValue(':type', $type);
@@ -23,18 +23,32 @@ function getAllPokemon()
 {
   global $db;
   $query = "select * from pokemon";
-  $statement = $db->prepare($query); 
+  $statement = $db->prepare($query);
   $statement->execute();
   $results = $statement->fetchAll();   // fetch()
   $statement->closeCursor();
   return $results;
 }
 
+function updatePokemonByID($pokemon_ID, $name, $weight, $type, $insurance)
+{
+  global $db;
+  $query = "update pokemon set name=:name, weight=:weight, type=:type, insurance=:insurance where pokemon_ID=:pokemon_ID";
+
+  $statement = $db->prepare($query);
+  $statement->bindValue(':name', $name);
+  $statement->bindValue(':weight', $weight);
+  $statement->bindValue(':type', $type);
+  $statement->bindValue(':insurance', $type);
+  $statement->execute();
+  $statement->closeCursor();
+}
+
 function deletePokemonByID($pokemon_ID)
 {
   global $db;
   $query = "delete from pokemon where pokemon_ID=:pokemon_ID";
-  $statement = $db->prepare($query); 
+  $statement = $db->prepare($query);
   $statement->bindValue(':pokemon_ID', $pokemon_ID);
   $statement->execute();
   $statement->closeCursor();
