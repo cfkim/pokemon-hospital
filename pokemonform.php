@@ -106,9 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <input type="hidden" name="year_to_update" value="<?php echo $friend['year']; ?>"/>
         </form>
      <td> -->
+    <td>
       <form action="pokemonform.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
-        <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['name']; ?>"/> <!-- confused here-
+        <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['name']; ?>"/>
       </form>
     </td>               
   </tr>
