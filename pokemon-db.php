@@ -30,10 +30,10 @@ function getAllPokemon()
   return $results;
 }
 
-function updatePokemonByID($pokemon_ID, $name, $weight, $type, $insurance)
+function updatePokemonByID($pokemon_ID, $name, $weight, $type, $date_of_birth, $last_visit, $insurance)
 {
   global $db;
-  $query = "update pokemon set name=:name, weight=:weight, type=:type, insurance=:insurance where pokemon_ID=:pokemon_ID";
+  $query = "update pokemon set name=:name, weight=:weight, type=:type, date_of_birth:date_of_birth, last_visit=:last_visit, insurance=:insurance where pokemon_ID=:pokemon_ID";
 
   $statement = $db->prepare($query);
   $statement->bindValue(':name', $name);
