@@ -23,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
    else if (!empty($_POST['confirmUpdateBtn']))
    {
+    echo $_POST['pokemon_ID'];
     updatePokemonByID($_POST['pokemon_ID'], $_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
-    $list_of_pokemon = getAllPokemon();
+    #$list_of_pokemon = getAllPokemon();
    }
 }
 
