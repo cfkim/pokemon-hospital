@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <h3>User: <?php echo $_SESSION['user']['username'] ?></h3>
 
+<a href="myprofile.php">My Profile</a>
 <a href="logout.php">Logout</a>
 
 <div class="container">
