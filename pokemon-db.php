@@ -41,7 +41,7 @@ function updatePokemonByID($pokemon_ID, $name, $weight, $type, $date_of_birth, $
   $statement->bindValue(':type', $type);
   $statement->bindValue(':date_of_birth', $date_of_birth);
   $statement->bindValue(':last_visit', $last_visit);
-  $statement->bindValue(':pokemon_ID', $pokemon_ID); // Add this line to bind the ID
+  $statement->bindValue(':pokemon_ID', $pokemon_ID);
   $statement->bindValue(':insurance', $insurance);
   $statement->execute();
   $statement->closeCursor();

@@ -6,7 +6,6 @@ $list_of_pokemon = getAllPokemon();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-
    if (!empty($_POST['deleteBtn']))
    {
     deletePokemonByID($_POST['pokemonID_to_delete']);
@@ -156,5 +155,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 ?>   
 </body>
 </html>
-
-
