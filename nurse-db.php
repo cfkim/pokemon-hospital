@@ -57,6 +57,19 @@ function updateNurseByID($nurse_ID, $name_first, $name_last, $is_charge_nurse)
 function deleteNurseByID($nurse_ID)
 {
   global $db;
+
+  // Deletes nurse from phone table
+  $queryPhone = "DELETE FROM nurse_phone WHERE nurse_ID = :nurse_ID";
+  $statementPhone = $db->prepare($queryPhone);
+  $statementPhone->bindValue(':nurse_ID', $nurse_ID);
+  $statementPhone->execute();
+
+  // Deletes nurse from specialties table
+  $querySpecialties = "DELETE FROM nurse_specialties WHERE nurse_ID = :nurse_ID";
+  $statementSpecialties = $db->prepare($querySpecialties);
+  $statementSpecialties->bindValue(':nurse_ID', $nurse_ID);
+  $statementSpecialties->execute();
+
   $query = "delete from nurse where nurse_ID=:nurse_ID";
   $statement = $db->prepare($query);
   $statement->bindValue(':nurse_ID', $nurse_ID);
