@@ -14,16 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
    else if (!empty($_POST['addBtn']))
    {
-      addNurse($_POST['nurse_ID'], $_POST['first_name'], $_POST['last_name'], $_POST['is_charge_nurse']);
+      $is_charge_nurse = ($_POST['is_charge_nurse'] == '1') ? 1 : 0;
+      addNurse($_POST['first_name'], $_POST['last_name'], $is_charge_nurse);
       $list_of_nurses = getAllNurses();
    }
    else if (!empty($_POST['updateBtn']))
    {
-      echo $_POST['nurse_ID_to_update'];
+      # echo $_POST['nurse_ID_to_update'];
    }
    else if (!empty($_POST['confirmUpdateBtn']))
    {
-    echo $_POST['nurse_ID'];
     updateNurseByID($_POST['nurse_ID'], $_POST['first_name'], $_POST['last_name'], $_POST['is_charge_nurse']);
     $list_of_nurses = getAllNurses();
    }
@@ -48,31 +48,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>
 
-  <!-- will show this link if the user session is charge nurse is true
-  <?= if ($_SESSION['is_charge_nurse'] != 0){
-        <a href="nursesearch.php">View nurses</a>
-       }
-  ?> -->
-
   <form name="mainForm" action="nursesearch.php" method="post">
       <input type="hidden" name="nurse_ID" value="<?php echo $_POST['nurse_ID_to_update'];?>">
       <div class="row mb-3 mx-3">
         Nurse first name:
-        <input type="text" class="form-control" name="nurse_name" required value="<?php echo $_POST['nurse_firstname_to_update'];?>"/>
+        <input type="text" class="form-control" name="first_name" required value="<?php echo $_POST['nurse_firstname_to_update'];?>"/>
       </div>
 
       <div class="row mb-3 mx-3">
         Nurse last name:
-        <input type="text" class="form-control" name="nurse_name" required value="<?php echo $_POST['nurse_lastname_to_update'];?>"/>
+        <input type="text" class="form-control" name="last_name" required value="<?php echo $_POST['nurse_lastname_to_update'];?>"/>
       </div>
 
       <div class="row mb-3 mx-3">
         Nurse position:
-        <input type="text" class="form-control" name="nurse_name" required value="<?php echo $_POST['nurse_position_to_update'];?>"/>
+        <input type="radio" name="is_charge_nurse" value="1"> Charge Nurse
+        <input type="radio" name="is_charge_nurse" value="0"> Nurse
+
       </div>
 
       <div class="row mb-3 mx-3">
-        <input type="submit" value="Add Patient" name="addBtn"
+        <input type="submit" value="Add Nurse" name="addBtn"
                 class="btn btn-primary" title="Add a nurse to the pokemon health center" />
       </div>
       <div class="row mb-3 mx-3">
@@ -82,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     </form>
 
 <hr/>
-<h3>List of Patients</h3>
+<h3>List of Nurses</h3>
 <div class="row justify-content-center">
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>
@@ -93,6 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <th>First name
     <th>Last name
     <th>Is charge nurse
+    <th>Phone number
+    <th>Specialty
     <th>&nbsp;</th>
     <th>&nbsp;</th>
   </tr>
@@ -103,7 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      <td><?php echo $nurse['nurse_ID']; ?></td>
      <td><?php echo $nurse['name_first']; ?></td>
      <td><?php echo $nurse['name_last']; ?></td>
-     <td><?php echo $nurse['is_charge_nurse']; ?></td>
+     <td><?php echo $nurse['is_charge_nurse'] ? 'Charge Nurse' : 'Regular Nurse'; ?></td>
+     <td><?php echo $nurse['phone_number']; ?></td>
+     <td><?php echo $nurse['specialties']; ?></td>
 
     <td>
         <form action="nursesearch.php" method="post">
