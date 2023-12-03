@@ -1,0 +1,4 @@
+# Use the PHP 8.1 runtime
+runtime: php81
+
+entrypoint: serve pokemonform.php
