@@ -2,7 +2,9 @@
 require("connect-db.php");
 require("nurse-db.php");
 
-$list_of_nurses = getAllNurses();
+$search = isset($_GET['search']) ? $_GET['search'] : null;
+
+$list_of_nurses = getAllNurses($search);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -15,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    else if (!empty($_POST['addBtn']))
    {
       $is_charge_nurse = ($_POST['is_charge_nurse'] == '1') ? 1 : 0;
-      addNurse($_POST['first_name'], $_POST['last_name'], $is_charge_nurse);
+      addNurse($_POST['first_name'], $_POST['last_name'], $is_charge_nurse, $_POST['phone_number'], $_POST['specialty']);
       $list_of_nurses = getAllNurses();
    }
    else if (!empty($_POST['updateBtn']))
@@ -67,6 +69,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
       </div>
 
+      <!--
+      <div class="row mb-3 mx-3">
+        Phone number:
+        <input type="text" class="form-control" name="phone_number" required value="<?php echo $_POST['phone_number_to_update'];?>"/>
+      </div>
+
+      <div class="row mb-3 mx-3">
+        Specialty:
+        <select class="form-control" name="specialty" required value="<?php echo $_POST['specialty_to_update'];?>">
+            <option value="Cardiology">cardiology</option>
+            <option value="Pediatrics">pediatrics</option>
+            <option value="Orthopedics">orthopedics</option>
+            <option value="Orthopedics">primary care</option>
+            <option value="Orthopedics">otolaryngology</option>
+        </select>
+      </div>-->
+
       <div class="row mb-3 mx-3">
         <input type="submit" value="Add Nurse" name="addBtn"
                 class="btn btn-primary" title="Add a nurse to the pokemon health center" />
@@ -78,6 +97,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     </form>
 
 <hr/>
+
+<h3>Search for Nurses</h3>
+<form method="get" action="nursesearch.php">
+    <label for="search">Search Nurse:</label>
+    <input type="text" name="search" id="search" placeholder="Enter first or last name">
+    <input type="submit" value="Search">
+</form>
+
 <h3>List of Nurses</h3>
 <div class="row justify-content-center">
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">

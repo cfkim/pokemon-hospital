@@ -13,15 +13,27 @@ function addNurse($name_first, $name_last, $is_charge_nurse)
   $statement->closeCursor();
 }
 
-function getAllNurses()
+function getAllNurses($search = null)
 {
   global $db;
   $query = "SELECT nurse.*, nurse_phone.phone_number, GROUP_CONCAT(nurse_specialties.specialty) AS specialties
               FROM nurse
               LEFT JOIN nurse_phone ON nurse.nurse_ID = nurse_phone.nurse_ID
-              LEFT JOIN nurse_specialties ON nurse.nurse_ID = nurse_specialties.nurse_ID
-              GROUP BY nurse.nurse_ID";
-  $statement = $db->prepare($query);
+              LEFT JOIN nurse_specialties ON nurse.nurse_ID = nurse_specialties.nurse_ID";
+
+  if ($search !== null) {
+        $query .= " WHERE nurse.name_first LIKE :search OR nurse.name_last LIKE :search";
+    }
+
+    $query .= " GROUP BY nurse.nurse_ID, nurse.name_first, nurse.name_last, nurse.is_charge_nurse";
+
+    $statement = $db->prepare($query);
+
+    if ($search !== null) {
+        $searchParam = '%' . $search . '%';
+        $statement->bindValue(':search', $searchParam);
+    }
+
   $statement->execute();
   $results = $statement->fetchAll();   // fetch()
   $statement->closeCursor();
