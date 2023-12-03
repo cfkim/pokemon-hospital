@@ -22,10 +22,18 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
 <!DOCTYPE html>
 <html>
     <head>
-        <h3> My Profile </h3>
+        <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
+        <!-- navbar-->
+        <ul>
+            <li><a class="active" href="pokemonform.php">Home</a></li>
+            <li><a href="myprofile.php">My Profile</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+        <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
         <p>Last Name: <?php echo $profile_info['name_last']; ?> </p>
         <p>Nurse ID: <?php echo $profile_info['nurse_ID']; ?> </p>
