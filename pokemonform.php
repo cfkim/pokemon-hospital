@@ -1,8 +1,18 @@
+<!--https://stackoverflow.com/questions/3512507/proper-way-to-logout-from-a-session-in-php-->
+
 <?php
 require("connect-db.php");
 require("pokemon-db.php");
 
+session_start();
 
+error_reporting(0);
+
+#if not logged in, redirect to login page
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: login.php');
+	exit;
+}
 
 $list_of_pokemon = getAllPokemon();
 
@@ -47,6 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </head>
 
 <body>
+
+
+<h3>User: <?php echo $_SESSION['user']['username'] ?></h3>
+
+<a href="logout.php">Logout</a>
+
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>  
 
