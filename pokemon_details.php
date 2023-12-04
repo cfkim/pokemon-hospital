@@ -12,6 +12,14 @@ if (!isset($_SESSION['loggedin'])) {
 
 $is_charge_nurse = isChargeNurse($_SESSION['user']['nurse_ID']);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+   if (!empty($_POST['exportBtn']))
+   {
+    exportHealthRecords($_POST['pokemon_ID_export'], $_POST['pokemon_name_export']);
+   }
+}
+
 if (isset($_GET['id'])) {
     $pokemonId = $_GET['id'];
     $pokemon = getPokemonInfo($pokemonId);
@@ -31,6 +39,17 @@ if (isset($_GET['id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="your name">
   <meta name="description" content="include some description about your page">
+  <style>
+        #exportBtn {
+            top: 80px;
+            right: 80px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
   <title>Pokemon Hospital Clinic</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -57,6 +76,12 @@ if (isset($_GET['id'])) {
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>
   <h2>Patient Profile</h2>
+
+  <form action="pokemon_details.php" method="post">
+    <input type="hidden" name="pokemon_ID_export" value="<?php echo $pokemon[0]['pokemon_ID']; ?>"/>
+    <input type="hidden" name="pokemon_name_export" value="<?php echo $pokemon[0]['name']; ?>"/>
+    <input type="submit" value="Export Patient Health Records" name="exportBtn" id="exportBtn" class="btn btn-secondary"/>
+</form>
 
   <?php
   if (!empty($pokemon)) {
