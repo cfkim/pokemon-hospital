@@ -2,10 +2,7 @@
 require("connect-db.php");
 require("pokemon-db.php");
 
-
-
 $list_of_pokemon = getAllPokemon();
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -14,6 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    {
     deletePokemonByID($_POST['pokemonID_to_delete']);
     $list_of_pokemon = getAllPokemon(); 
+   }
+   else if (!empty($_POST['exportBtn']))
+   {
+    exportHealthRecords($_POST['pokemon_ID_export'], $_POST['pokemon_name_export']);
    }
    else if (!empty($_POST['addBtn']))
    {
@@ -116,6 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       <form action="pokemonform.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
         <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
+        <input type="submit" value="Export" name="exportBtn" class="btn btn-secondary"/>
+        <input type="hidden" name="pokemon_ID_export" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
+        <input type="hidden" name="pokemon_name_export" value="<?php echo $pokemon['name']; ?>"/>
       </form>
     </td>               
   </tr>
