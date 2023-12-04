@@ -77,4 +77,16 @@ function deleteNurseByID($nurse_ID)
   $statement->closeCursor();
 
 }
+
+function isChargeNurse($nurse_ID){
+  global $db;
+
+  $query = "select is_charge_nurse from nurse where nurse_ID='".$nurse_ID."'";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetch();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
+
 ?>
