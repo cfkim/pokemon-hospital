@@ -57,4 +57,39 @@ function deletePokemonByID($pokemon_ID)
   $statement->closeCursor();
 
 }
+
+
+function getNurseProfileInfo($nurse_ID)
+{
+  global $db;
+  $query = "select * from nurse where nurse_ID=$nurse_ID";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetch();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
+
+function getNursePhoneNumbers($nurse_ID)
+{
+  global $db;
+  $query = "select phone_number from nurse_phone where nurse_ID=$nurse_ID";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetch();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
+
+function getNurseSpecialties($nurse_ID)
+{
+  global $db;
+  $query = "select specialty from nurse_specialties where nurse_ID=$nurse_ID";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetchAll();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
+
 ?>
