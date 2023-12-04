@@ -78,7 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 <div class="container">
-  <h1>Pokemon Hospital Clinic</h1>
+  <!--<h1>Pokemon Hospital Clinic</h1>-->
+
+  <div style="text-align: center;">
+    <img src="photos\pokemonform.png" height="300">
+  </div>
 
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
 

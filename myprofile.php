@@ -56,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     
     <div class="container">
-        <h1>Pokemon Hospital Clinic</h1>
+        <div style="text-align: center;">
+        <img src="photos\myprofile.png" height="300">
+        </div>
         <br>
         <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
