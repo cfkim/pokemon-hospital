@@ -30,6 +30,16 @@ function getAllPokemon()
   return $results;
 }
 
+function getAssignedPokemon($nurse_ID){
+  global $db;
+  $query = "select * from pokemon where nurse_ID='".$nurse_ID."'";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetchAll();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
+
 function updatePokemonByID($pokemon_ID, $name, $weight, $type, $date_of_birth, $last_visit, $insurance)
 {
   global $db;
@@ -102,5 +112,6 @@ function searchPokemon($name)
   $statement->closeCursor();
   return $results;
 }
+
 
 ?>
