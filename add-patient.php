@@ -3,6 +3,7 @@
 <?php
 require("connect-db.php");
 require("pokemon-db.php");
+require("nurse-db.php");
 
 session_start();
 
@@ -13,6 +14,8 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
 	exit;
 }
+
+$is_charge_nurse = isChargeNurse($_SESSION['user']['nurse_ID']);
 
 $list_of_pokemon = getAllPokemon();
 
@@ -53,16 +56,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <title>Pokemon Hospital Clinic</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
 </head>
 
 <body>
 
-
-<h3>User: <?php echo $_SESSION['user']['username'] ?></h3>
-
-<a href="myprofile.php">My Profile</a>
-<a href="logout.php">Logout</a>
+<!-- navbar -->
+<ul>
+  <li><a class="active" href="pokemonform.php">Home</a></li>
+  <li><a href="myprofile.php">My Profile</a></li>
+  <li><a href="patient-search.php">Patient Search</a></li>
+  <?php if ($is_charge_nurse[0]) : ?>
+    <li><a href="nursesearch.php">Nurse Search</a></li>
+  <?php endif; ?>
+  <li><a href="nurse.php">Nurse</a></li>
+  <li><a href="add-patient.php">Add Patient</a></li>
+  <li><a href="logout.php">Logout</a></li>
+</ul>
 
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>  

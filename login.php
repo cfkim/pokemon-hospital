@@ -50,7 +50,6 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
                     if (password_verify($password, $result['password'])) {
                         $_SESSION['loggedin'] = TRUE;
                         $_SESSION['user'] = $result;
-                        //$_SESSION['role'] = $result['role']
                         //echo '<p class="success">Congratulations, you are logged in!</p>';
                         header("Location: pokemonform.php");
                     } else {

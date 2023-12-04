@@ -3,16 +3,21 @@
 <?php
 require("connect-db.php");
 require("pokemon-db.php");
+require("nurse-db.php");
 
 session_start();
 
 error_reporting(0);
+
+
 
 #if not logged in, redirect to login page
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
 	exit;
 }
+
+$is_charge_nurse = isChargeNurse($_SESSION['user']['nurse_ID']);
 
 $list_of_pokemon = getAllPokemon();
 
@@ -63,11 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <ul>
   <li><a class="active" href="pokemonform.php">Home</a></li>
   <li><a href="myprofile.php">My Profile</a></li>
-  <li><a href="#contact">Contact</a></li>
+  <li><a href="patient-search.php">Patient Search</a></li>
+  <?php if ($is_charge_nurse[0]) : ?>
+    <li><a href="nursesearch.php">Nurse Search</a></li>
+  <?php endif; ?>
+  <li><a href="nurse.php">Nurse</a></li>
+  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
-<h3>User: <?php echo $_SESSION['user']['username'] ?></h3>
 
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>
