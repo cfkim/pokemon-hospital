@@ -29,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     deletePokemonByID($_POST['pokemonID_to_delete']);
     $list_of_pokemon = getAllPokemon();
    }
-   else if (!empty($_POST['addBtn']))
+   /*else if (!empty($_POST['addBtn']))
    {
       addPokemon($_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
       $list_of_pokemon = getAllPokemon();
-   }
+   }*/
    else if (!empty($_POST['updateBtn']))
    {
       # echo $_POST['pokemon_ID_to_update'];
@@ -68,12 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <ul>
   <li><a class="active" href="pokemonform.php">Home</a></li>
   <li><a href="myprofile.php">My Profile</a></li>
+  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="patient-search.php">Patient Search</a></li>
   <?php if ($is_charge_nurse[0]) : ?>
     <li><a href="nursesearch.php">Nurse Search</a></li>
   <?php endif; ?>
-  <li><a href="nurse.php">Nurse</a></li>
-  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
@@ -109,11 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         Insurance:
         <input type="text" class="form-control" name="insurance" required value="<?php echo $_POST['insurance_to_update'];?>"/>
       </div>
+      <!--
       <div class="row mb-3 mx-3">
         <input type="submit" value="Add Patient" name="addBtn"
                 class="btn btn-primary" title="Add a patient to the pokemon health center" />
       </div>
-
+      -->
       <div class="row mb-3 mx-3">
         <input type="submit" value="Confirm Update" name="confirmUpdateBtn"
                 class="btn btn-secondary" title="Update a pokemon into pokemon table" />
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 <hr/>
-<h3>List of Patients</h3>
+<h3><center>All Patients</center></h3>
 <div class="row justify-content-center">
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>

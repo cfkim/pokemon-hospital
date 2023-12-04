@@ -17,7 +17,18 @@ if (!isset($_SESSION['loggedin'])) {
 $is_charge_nurse = isChargeNurse($_SESSION['user']['nurse_ID']);
 $profile_info = getNurseProfileInfo($_SESSION['user']['nurse_ID']);
 $phone_numbers = getNursePhoneNumbers($_SESSION['user']['nurse_ID']);
-$specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
+$specialities = getNurseSpecialties($_SESSION['user']['nurse_ID']);
+$assigned_pokemon = getAssignedPokemon($_SESSION['user']['nurse_ID']);
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+   if (!empty($_POST['deleteBtn']))
+   {
+    deletePokemonByID($_POST['pokemonID_to_delete']);
+    $assigned_pokemon = getAssignedPokemon($_SESSION['user']['nurse_ID']);
+   }
+}
 
 ?>
 
@@ -30,19 +41,23 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
     </head>
 
     <body>
-        <!-- navbar -->
-        <ul>
+    <!-- navbar -->
+    <ul>
         <li><a class="active" href="pokemonform.php">Home</a></li>
         <li><a href="myprofile.php">My Profile</a></li>
+        <li><a href="add-patient.php">Add Patient</a></li>
         <li><a href="patient-search.php">Patient Search</a></li>
         <?php if ($is_charge_nurse[0]) : ?>
             <li><a href="nursesearch.php">Nurse Search</a></li>
         <?php endif; ?>
-        <li><a href="nurse.php">Nurse</a></li>
-        <li><a href="add-patient.php">Add Patient</a></li>
         <li><a href="logout.php">Logout</a></li>
-        </ul>
+    </ul>
 
+
+    
+    <div class="container">
+        <h1>Pokemon Hospital Clinic</h1>
+        <br>
         <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
         <p>Last Name: <?php echo $profile_info['name_last']; ?> </p>
@@ -74,7 +89,64 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
             } else { // if the nurse only has one specialty
                 echo $specialities[0];
             }
-            ?>
+        ?>
         </p>
+    </div>
+    <br>
+    <div class="container">
+        <h3>My Patients</h3>
+        <div class="row ">
+        <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
+        <thead>
+        <tr style="background-color:#B0B0B0">
+
+            <!--<th width="30%">Name-->
+            <th>ID
+            <th>Name
+            <th>Weight
+            <th>Type
+            <th>Date of Birth
+            <th>Last Visit
+            <th>Insurance
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+
+        <?php foreach ($assigned_pokemon as $pokemon): ?>
+        <tr>
+            <td><?php echo $pokemon['pokemon_ID']; ?></td>
+            <td><?php echo $pokemon['name']; ?></td>
+            <td><?php echo $pokemon['weight']; ?></td>
+            <td><?php echo $pokemon['type']; ?></td>
+            <td><?php echo $pokemon['date_of_birth']; ?></td>
+            <td><?php echo $pokemon['last_visit']; ?></td>
+            <td><?php echo $pokemon['insurance']; ?></td>
+            <td>
+
+                <form action="pokemonform.php" method="post">
+                <input type="hidden" name="pokemon_ID_to_update" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
+                <input type="hidden" name="pokemon_name_to_update" value="<?php echo $pokemon['name']; ?>"/>
+                <input type="hidden" name="weight_to_update" value="<?php echo $pokemon['weight']; ?>"/>
+                <input type="hidden" name="type_to_update" value="<?php echo $pokemon['type']; ?>"/>
+                <input type="hidden" name="date_of_birth_to_update" value="<?php echo $pokemon['date_of_birth']; ?>"/>
+                <input type="hidden" name="last_visit_to_update" value="<?php echo $pokemon['last_visit']; ?>"/>
+                <input type="hidden" name="insurance_to_update" value="<?php echo $pokemon['insurance']; ?>"/>
+                </form>
+            <td>
+            
+            
+            <form action="myprofile.php" method="post">
+                <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
+                <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
+            </form>
+            
+            </td>
+        </tr>
+        <?php endforeach; ?>
+
+        </table>
+        </div>
+    </div>
     </body>
 </html>

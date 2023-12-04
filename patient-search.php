@@ -73,12 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <ul>
   <li><a class="active" href="pokemonform.php">Home</a></li>
   <li><a href="myprofile.php">My Profile</a></li>
+  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="patient-search.php">Patient Search</a></li>
   <?php if ($is_charge_nurse[0]) : ?>
     <li><a href="nursesearch.php">Nurse Search</a></li>
   <?php endif; ?>
-  <li><a href="nurse.php">Nurse</a></li>
-  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
