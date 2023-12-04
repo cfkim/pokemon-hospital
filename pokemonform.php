@@ -22,11 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
    else if (!empty($_POST['updateBtn']))
    {
-      echo $_POST['pokemon_to_update'];
+      echo $_POST['pokemon_ID_to_update'];
    }
    else if (!empty($_POST['confirmUpdateBtn']))
    {
-    updatePokemonByID($_POST['pokemon_ID'], $_POST['name'], $_POST['weight'], $_POST['type'], $_POST['insurance']);
+    echo $_POST['pokemon_ID'];
+    updatePokemonByID($_POST['pokemon_ID'], $_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
     $list_of_pokemon = getAllPokemon();
    }
 }
@@ -52,7 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
  
-  <form name="mainForm" action="pokemonform.php" method="post">   
+  <form name="mainForm" action="pokemonform.php" method="post">
+      <input type="hidden" name="pokemon_ID" value="<?php echo $_POST['pokemon_ID_to_update'];?>">
       <div class="row mb-3 mx-3">
         Pokemon name:
         <input type="text" class="form-control" name="pokemon_name" required value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
@@ -99,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <th>Last Visit
     <th>Insurance    
     <th>&nbsp;</th>
-    <th>&nbsp;</th> 
+    <th>&nbsp;</th>
   </tr>
   </thead>
 
@@ -113,6 +115,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      <td><?php echo $pokemon['last_visit']; ?></td> 
      <td><?php echo $pokemon['insurance']; ?></td>
     <td>
+
+        <form action="pokemonform.php" method="post">
+          <input type="submit" value="Update" name="updateBtn" class="btn btn-secondary"/></td>
+          <input type="hidden" name="pokemon_ID_to_update" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
+          <input type="hidden" name="pokemon_name_to_update" value="<?php echo $pokemon['name']; ?>"/>
+          <input type="hidden" name="weight_to_update" value="<?php echo $pokemon['weight']; ?>"/>
+          <input type="hidden" name="type_to_update" value="<?php echo $pokemon['type']; ?>"/>
+          <input type="hidden" name="date_of_birth_to_update" value="<?php echo $pokemon['date_of_birth']; ?>"/>
+          <input type="hidden" name="last_visit_to_update" value="<?php echo $pokemon['last_visit']; ?>"/>
+          <input type="hidden" name="insurance_to_update" value="<?php echo $pokemon['insurance']; ?>"/>
+        </form>
+    <td>
+
       <form action="pokemonform.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
         <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
