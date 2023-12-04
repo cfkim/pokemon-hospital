@@ -65,89 +65,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <ul>
   <li><a class="active" href="pokemonform.php">Home</a></li>
   <li><a href="myprofile.php">My Profile</a></li>
+  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="patient-search.php">Patient Search</a></li>
   <?php if ($is_charge_nurse[0]) : ?>
     <li><a href="nursesearch.php">Nurse Search</a></li>
   <?php endif; ?>
-  <li><a href="nurse.php">Nurse</a></li>
-  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
+
 <div class="container">
 
   <h1>Pokemon Hospital Clinic</h1>  
   <h2>Nurse Landing Page</h2>  
 
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
- 
-  <form name="mainForm" action="pokemonform.php" method="post">   
-      <div class="row mb-3 mx-3">
-        Pokemon name:
-        <input type="text" class="form-control" name="pokemon_name" required value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
-      </div>
-      <div class="row mb-3 mx-3">
-        Weight:
-        <input type="number" class="form-control" name="weight" required value="<?php echo $_POST['weight_to_update'];?>"/>        
-      </div>  
-      <div class="row mb-3 mx-3">
-        Type:
-        <input type="text" class="form-control" name="type" required value="<?php echo $_POST['type_to_update'];?>"/>        
-      </div>  
-      <div class="row mb-3 mx-3">
-        Date of Birth:
-        <input type="date" class="form-control" name="date_of_birth" required value="<?php echo $_POST['date_of_birth_to_update'];?>"/>        
-      </div>
-      <div class="row mb-3 mx-3">
-        Last Visit:
-        <input type="date" class="form-control" name="last_visit" required value="<?php echo $_POST['last_visit_to_update'];?>"/>        
-      </div>  
-      <div class="row mb-3 mx-3">
-        Insurance:
-        <input type="text" class="form-control" name="insurance" required value="<?php echo $_POST['insurance_to_update'];?>"/>        
-      </div>  
-      <div class="row mb-3 mx-3">
-        <input type="submit" value="Add Patient" name="addBtn" 
-                class="btn btn-primary" title="Add a patient to the pokemon health center" />
-      </div>
-    </form>     
 
-<hr/>
-<h3>List of Patients</h3>
-<div class="row justify-content-center">  
-<table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
-  <thead>
-  <tr style="background-color:#B0B0B0">
-    
-    <!--<th width="30%">Name-->
-    <th>ID
-    <th>Name
-    <th>Weight
-    <th>Type
-    <th>Date of Birth
-    <th>Last Visit
-    <th>Insurance    
-    <th>&nbsp;</th>
-    <th>&nbsp;</th> 
-  </tr>
-  </thead>
 
-  <?php foreach ($list_of_pokemon as $pokemon): ?>
-  <tr>
-     <td><?php echo $pokemon['pokemon_ID']; ?></td>
-     <td><?php echo $pokemon['name']; ?></td>
-     <td><?php echo $pokemon['weight']; ?></td>        
-     <td><?php echo $pokemon['type']; ?></td> 
-     <td><?php echo $pokemon['date_of_birth']; ?></td> 
-     <td><?php echo $pokemon['last_visit']; ?></td> 
-     <td><?php echo $pokemon['insurance']; ?></td>
-    <td>
-      <form action="pokemonform.php" method="post">
-        <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
-        <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
-      </form>
-    </td>               
-  </tr>
-  <?php endforeach; ?>
 
 </table>
 </div>
