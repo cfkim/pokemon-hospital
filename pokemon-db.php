@@ -1,9 +1,9 @@
 <?php
-function addPokemon($name, $weight, $type, $date_of_birth, $last_visit, $insurance)
+function addPokemon($name, $weight, $type, $date_of_birth, $last_visit, $insurance, $trainer_ID, $nurse_ID)
 {
   global $db;
 
-  $query = "insert into pokemon (name, weight, type, date_of_birth, last_visit, insurance) values (:name, :weight, :type, :date_of_birth, :last_visit, :insurance) ";
+  $query = "insert into pokemon (name, weight, type, date_of_birth, last_visit, insurance, trainer_ID, nurse_ID) values (:name, :weight, :type, :date_of_birth, :last_visit, :insurance, :trainer_ID, :nurse_ID) ";
   // prepare:
   // 1. prepare (compile)
   // 2. bindValue + exe
@@ -15,6 +15,8 @@ function addPokemon($name, $weight, $type, $date_of_birth, $last_visit, $insuran
   $statement->bindValue(':date_of_birth', $date_of_birth);
   $statement->bindValue(':last_visit', $last_visit);
   $statement->bindValue(':insurance', $insurance);
+  $statement->bindValue(':trainer_ID', $trainer_ID);
+  $statement->bindValue(':nurse_ID', $nurse_ID);
   $statement->execute();
   $statement->closeCursor();
 }
@@ -278,5 +280,16 @@ function exportHealthRecords($pokemon_ID, $pokemon_name)
   exit();
 }
 
+
+function getAllTrainers()
+{
+  global $db;
+  $query = "select * from trainer";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetchAll();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
 
 ?>

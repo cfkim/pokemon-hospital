@@ -194,9 +194,6 @@ $list_of_nurses = getAllNurses($search);
   <!-- <script src="script.js"></script>  -->
 
 </div>
-<?php
-  include("footer.html");
-?>
 </body>
 </html>
 

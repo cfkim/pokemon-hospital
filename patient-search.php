@@ -139,6 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   </table>
   </div>
+<?php
+else:
+    echo "No results.";
+?>
+
 <?php endif; ?>
 
   <!-- CDN for JS bootstrap -->
