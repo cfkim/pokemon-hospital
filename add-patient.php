@@ -19,29 +19,17 @@ $is_charge_nurse = isChargeNurse($_SESSION['user']['nurse_ID']);
 
 $list_of_pokemon = getAllPokemon();
 
+$list_of_trainers = getAllTrainers();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
-   if (!empty($_POST['deleteBtn']))
+   if (!empty($_POST['addBtn']))
    {
-    deletePokemonByID($_POST['pokemonID_to_delete']);
-    $list_of_pokemon = getAllPokemon(); 
-   }
-   else if (!empty($_POST['addBtn']))
-   {
-      addPokemon($_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance']);
+      addPokemon($_POST['pokemon_name'], $_POST['weight'], $_POST['type'], $_POST['date_of_birth'], $_POST['last_visit'], $_POST['insurance'], $_POST['trainer'], $_SESSION['user']['nurse_ID']);
       $list_of_pokemon = getAllPokemon();    
    }
-   else if (!empty($_POST['updateBtn']))
-   {
-      echo $_POST['pokemon_to_update'];
-   }
-   else if (!empty($_POST['confirmUpdateBtn']))
-   {
-    updatePokemonByID($_POST['pokemon_ID'], $_POST['name'], $_POST['weight'], $_POST['type'], $_POST['insurance']);
-    $list_of_pokemon = getAllPokemon();
-   }
+   
 }
 
 ?>
@@ -79,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
  
-  <form name="mainForm" action="pokemonform.php" method="post">   
+  <form name="mainForm" action="add-patient.php" method="post">   
       <div class="row mb-3 mx-3">
         Pokemon name:
         <input type="text" class="form-control" name="pokemon_name" required value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
@@ -103,7 +91,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       <div class="row mb-3 mx-3">
         Insurance:
         <input type="text" class="form-control" name="insurance" required value="<?php echo $_POST['insurance_to_update'];?>"/>        
-      </div>  
+      </div>
+      <div class="row mb-3 mx-3">
+        Trainer:
+        <select name="trainer">
+        <?php foreach ($list_of_trainers as $trainer): ?>
+            <option required value="<?php echo $trainer["trainer_ID"];?>">
+            <?php echo $trainer["name_first"];?> <?php echo $trainer["name_last"];?>
+            </option>
+        <?php endforeach; ?>
+        </select>
+      </div>
       <div class="row mb-3 mx-3">
         <input type="submit" value="Add Patient" name="addBtn" 
                 class="btn btn-primary" title="Add a patient to the pokemon health center" />
@@ -123,8 +121,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <!-- <script src="script.js"></script>  -->
   
 </div> 
-<?php
-  include("footer.html");
-?>   
+  
 </body>
 </html>

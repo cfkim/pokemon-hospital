@@ -185,9 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <!-- <script src="script.js"></script>  -->
 
 </div>
-<?php
-  include("footer.html");
-?>
+
 </body>
 
 </html>
