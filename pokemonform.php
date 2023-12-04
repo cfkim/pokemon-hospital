@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
    else if (!empty($_POST['updateBtn']))
    {
-      echo $_POST['pokemon_ID_to_update'];
+      # echo $_POST['pokemon_ID_to_update'];
    }
    else if (!empty($_POST['confirmUpdateBtn']))
    {
