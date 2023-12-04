@@ -26,30 +26,30 @@ $search = isset($_GET['search']) ? $_GET['search'] : null;
 
 $list_of_nurses = getAllNurses($search);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
+// if ($_SERVER['REQUEST_METHOD'] == 'POST')
+// {
 
-   if (!empty($_POST['deleteBtn']))
-   {
-    deleteNurseByID($_POST['nurseID_to_delete']);
-    $list_of_nurses = getAllNurses();
-   }
-   else if (!empty($_POST['addBtn']))
-   {
-      $is_charge_nurse = ($_POST['is_charge_nurse'] == '1') ? 1 : 0;
-      addNurse($_POST['first_name'], $_POST['last_name'], $is_charge_nurse, $_POST['phone_number'], $_POST['specialty']);
-      $list_of_nurses = getAllNurses();
-   }
-   else if (!empty($_POST['updateBtn']))
-   {
-      # echo $_POST['nurse_ID_to_update'];
-   }
-   else if (!empty($_POST['confirmUpdateBtn']))
-   {
-    updateNurseByID($_POST['nurse_ID'], $_POST['first_name'], $_POST['last_name'], $_POST['is_charge_nurse']);
-    $list_of_nurses = getAllNurses();
-   }
-}
+//    if (!empty($_POST['deleteBtn']))
+//    {
+//     deleteNurseByID($_POST['nurseID_to_delete']);
+//     $list_of_nurses = getAllNurses();
+//    }
+//    else if (!empty($_POST['addBtn']))
+//    {
+//       $is_charge_nurse = ($_POST['is_charge_nurse'] == '1') ? 1 : 0;
+//       addNurse($_POST['first_name'], $_POST['last_name'], $is_charge_nurse, $_POST['phone_number'], $_POST['specialty']);
+//       $list_of_nurses = getAllNurses();
+//    }
+  //  else if (!empty($_POST['updateBtn']))
+  //  {
+  //     # echo $_POST['nurse_ID_to_update'];
+  //  }
+  //  else if (!empty($_POST['confirmUpdateBtn']))
+  //  {
+  //   updateNurseByID($_POST['nurse_ID'], $_POST['first_name'], $_POST['last_name'], $_POST['is_charge_nurse']);
+  //   $list_of_nurses = getAllNurses();
+  //  }
+// }
 
 ?>
 
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <div class="container">
   <h1>Pokemon Hospital Clinic</h1>
 
-  <form name="mainForm" action="nursesearch.php" method="post">
+  <!-- <form name="mainForm" action="nursesearch.php" method="post">
       <input type="hidden" name="nurse_ID" value="<?php echo $_POST['nurse_ID_to_update'];?>">
       <div class="row mb-3 mx-3">
         Nurse first name:
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <input type="radio" name="is_charge_nurse" value="1"> Charge Nurse
         <input type="radio" name="is_charge_nurse" value="0"> Nurse
 
-      </div>
+      </div> -->
 
       <!--
       <div class="row mb-3 mx-3">
@@ -121,15 +121,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         </select>
       </div>-->
 
-      <div class="row mb-3 mx-3">
+      <!-- <div class="row mb-3 mx-3">
         <input type="submit" value="Add Nurse" name="addBtn"
                 class="btn btn-primary" title="Add a nurse to the pokemon health center" />
       </div>
       <div class="row mb-3 mx-3">
         <input type="submit" value="Confirm Update" name="confirmUpdateBtn"
                 class="btn btn-secondary" title="Update a nurse into nurse table" />
-      </div>
-    </form>
+      </div> -->
+    <!-- </form> -->
 
 <hr/>
 
@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      <td><?php echo $nurse['is_charge_nurse'] ? 'Charge Nurse' : 'Regular Nurse'; ?></td>
      <td><?php echo $nurse['phone_number']; ?></td>
      <td><?php echo $nurse['specialties']; ?></td>
-
+<!-- 
     <td>
         <form action="nursesearch.php" method="post">
           <input type="submit" value="Update" name="updateBtn" class="btn btn-secondary"/></td>
@@ -175,12 +175,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <input type="hidden" name="nurse_lastname_to_update" value="<?php echo $nurse['name_last']; ?>"/>
           <input type="hidden" name="nurse_position_to_update" value="<?php echo $nurse['is_charge_nurse']; ?>"/>
         </form>
-    <td>
-      <form action="nursesearch.php" method="post">
+    <td> -->
+      <!-- <form action="nursesearch.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
         <input type="hidden" name="nurseID_to_delete" value="<?php echo $nurse['nurse_ID']; ?>"/>
       </form>
-    </td>
+    </td> -->
   </tr>
   <?php endforeach; ?>
 
