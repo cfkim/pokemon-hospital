@@ -18,19 +18,11 @@
 
 /** F23, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
 // $username = 'root';
-// $password = 'your-root-password';
-// $host = 'instance-connection-name';       // e.g., 'cs4750:us-east4:db-demo'; 
-// $dbname = 'your-database-name;;           // e.g., 'guestbook';
-// $dsn = "mysql:host=your-SQL-public-IP-address;dbname=your-database-name";   // connect PHP (XAMPP) to DB (GCP)
-//       e.g., "mysql:host=99.99.999.99;dbname=$dbname";   
+// $password = 'FourCircles';
+// $host = '35.245.252.124';
+// $dbname = 'pokemon-clinic';
+// $dsn = "mysql:host=35.245.252.124;dbname=$dbname";
 
-// to get public IP addres of the SQL instance, go to GCP SQL overview page
-
-// To connect from a local PHP to GCP SQL instance, need to add authormized network
-// to allow (my)machine to connect to the SQL instance. 
-// 1. Get IP of the computer that tries to connect to the SQL instance
-//    (use http://ipv4.whatismyv6.com/ to find the IP address)
-// 2. On the SQL connections page, add authorized networks, enter the IP address
 ////////////////////////////////////////////
 
 /** F23, PHP (on GCP, local XAMPP, or CS server) connect to MySQL (on local XAMPP) **/
