@@ -35,6 +35,7 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
             <li><a href="#contact">Contact</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
+
         <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
         <p>Last Name: <?php echo $profile_info['name_last']; ?> </p>
