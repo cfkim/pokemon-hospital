@@ -89,6 +89,23 @@ function isChargeNurse($nurse_ID){
   return $results;
 }
 
+function getNurseName($nurse_ID){
+  global $db;
+
+  $query = "SELECT name_first, name_last
+  FROM nurse
+  WHERE nurse.nurse_ID=:nurse_ID";
+
+  $statement = $db->prepare($query);
+
+  // Bind the parameter before executing the statement
+  $statement->bindParam(':nurse_ID', $nurse_ID);
+
+  $statement->execute();
+  $results = $statement->fetchAll();
+  $statement->closeCursor();
+  return $results;
+}
 
 
 ?>

@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     <?php foreach ($list_of_pokemon as $pokemon): ?>
     <tr>
-      <td><?php echo $pokemon['pokemon_ID']; ?></td>
+      <td><a href="pokemon_details.php?id=<?php echo $pokemon['pokemon_ID']; ?>"><?php echo $pokemon['pokemon_ID']; ?></a></td>
       <td><?php echo $pokemon['name']; ?></td>
       <td><?php echo $pokemon['weight']; ?></td>        
       <td><?php echo $pokemon['type']; ?></td> 
@@ -139,6 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
   </table>
   </div>
+<?php
+else:
+    echo "No results.";
+?>
+
 <?php endif; ?>
 
   <!-- CDN for JS bootstrap -->

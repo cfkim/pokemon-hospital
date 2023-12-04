@@ -42,6 +42,52 @@ function getAssignedPokemon($nurse_ID){
   return $results;
 }
 
+function getPokemonInfo($pokemon_ID){
+  global $db;
+
+  $query = "SELECT pokemon.*, GROUP_CONCAT(DISTINCT pokemon_allergies.allergy) as allergies,
+  GROUP_CONCAT(DISTINCT pokemon_illnesses.illness) as illnesses,
+  GROUP_CONCAT(DISTINCT pokemon_injuries.injury) as injuries,
+  GROUP_CONCAT(DISTINCT pokemon_medications.medication) as medications
+  FROM pokemon
+  LEFT JOIN pokemon_allergies ON pokemon.pokemon_ID = pokemon_allergies.pokemon_ID
+  LEFT JOIN pokemon_illnesses ON pokemon.pokemon_ID = pokemon_illnesses.pokemon_ID
+  LEFT JOIN pokemon_injuries ON pokemon.pokemon_ID = pokemon_injuries.pokemon_ID
+  LEFT JOIN pokemon_medications ON pokemon.pokemon_ID = pokemon_medications.pokemon_ID
+  WHERE pokemon.pokemon_ID=:pokemon_ID
+  GROUP BY pokemon.pokemon_ID";
+
+  $statement = $db->prepare($query);
+
+  // Bind the parameter before executing the statement
+  $statement->bindParam(':pokemon_ID', $pokemon_ID);
+
+  $statement->execute();
+  $results = $statement->fetchAll();
+  $statement->closeCursor();
+  return $results;
+
+}
+
+function getTrainerInfo($trainer_ID){
+  global $db;
+
+  $query = "SELECT trainer.*, trainer_phone.phone_number
+  FROM trainer
+  LEFT JOIN trainer_phone ON trainer.trainer_ID = trainer_phone.trainer_ID
+  WHERE trainer.trainer_ID=:trainer_ID";
+
+  $statement = $db->prepare($query);
+
+  // Bind the parameter before executing the statement
+  $statement->bindParam(':trainer_ID', $trainer_ID);
+
+  $statement->execute();
+  $results = $statement->fetchAll();
+  $statement->closeCursor();
+  return $results;
+}
+
 function updatePokemonByID($pokemon_ID, $name, $weight, $type, $date_of_birth, $last_visit, $insurance)
 {
   global $db;
