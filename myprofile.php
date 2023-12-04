@@ -22,16 +22,20 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
 <!DOCTYPE html>
 <html>
     <head>
-        
-    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
-        <a href="myprofile.php">My Profile</a>
-        <a href="patient-search.php">Patient Search</a>
-        <a href="add-patient.php">Add New Patient</a>
-        <a href="logout.php">Logout</a>
-        
+        <!-- navbar-->
+        <ul>
+            <li><a class="active" href="pokemonform.php">Home</a></li>
+            <li><a href="myprofile.php">My Profile</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="logout.php">Logout</a></li>
+        </ul>
+
         <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
         <p>Last Name: <?php echo $profile_info['name_last']; ?> </p>
