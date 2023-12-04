@@ -63,8 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 </ul>
 
 <div class="container">
-  <h1>Pokemon Hospital Clinic</h1>  
-
+  <div style="text-align: center;">
+    <img src="photos\add-patient.png" height="300">
+  </div>
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
  
   <form name="mainForm" action="add-patient.php" method="post">   
