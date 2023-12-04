@@ -2,10 +2,11 @@
 
 require("connect-db.php");
 require("pokemon-db.php");
+require("nurse-db.php");
 
 session_start();
 
-//error_reporting(0);
+error_reporting(0);
 
 #if not logged in, redirect to login page
 if (!isset($_SESSION['loggedin'])) {
@@ -13,6 +14,7 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
+$is_charge_nurse = isChargeNurse($_SESSION['user']['nurse_ID']);
 $profile_info = getNurseProfileInfo($_SESSION['user']['nurse_ID']);
 $phone_numbers = getNursePhoneNumbers($_SESSION['user']['nurse_ID']);
 $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
@@ -22,10 +24,26 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
 <!DOCTYPE html>
 <html>
     <head>
-        <h3> My Profile </h3>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">  
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
+        <!-- navbar -->
+        <ul>
+        <li><a class="active" href="pokemonform.php">Home</a></li>
+        <li><a href="myprofile.php">My Profile</a></li>
+        <li><a href="patient-search.php">Patient Search</a></li>
+        <?php if ($is_charge_nurse[0]) : ?>
+            <li><a href="nursesearch.php">Nurse Search</a></li>
+        <?php endif; ?>
+        <li><a href="nurse.php">Nurse</a></li>
+        <li><a href="add-patient.php">Add Patient</a></li>
+        <li><a href="logout.php">Logout</a></li>
+        </ul>
+
+        <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
         <p>Last Name: <?php echo $profile_info['name_last']; ?> </p>
         <p>Nurse ID: <?php echo $profile_info['nurse_ID']; ?> </p>

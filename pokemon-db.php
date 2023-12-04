@@ -30,16 +30,19 @@ function getAllPokemon()
   return $results;
 }
 
-function updatePokemonByID($pokemon_ID, $name, $weight, $type, $insurance)
+function updatePokemonByID($pokemon_ID, $name, $weight, $type, $date_of_birth, $last_visit, $insurance)
 {
   global $db;
-  $query = "update pokemon set name=:name, weight=:weight, type=:type, insurance=:insurance where pokemon_ID=:pokemon_ID";
+  $query = "update pokemon set name=:name, weight=:weight, type=:type, date_of_birth=:date_of_birth, last_visit=:last_visit, insurance=:insurance where pokemon_ID=:pokemon_ID";
 
   $statement = $db->prepare($query);
   $statement->bindValue(':name', $name);
   $statement->bindValue(':weight', $weight);
   $statement->bindValue(':type', $type);
-  $statement->bindValue(':insurance', $type);
+  $statement->bindValue(':date_of_birth', $date_of_birth);
+  $statement->bindValue(':last_visit', $last_visit);
+  $statement->bindValue(':pokemon_ID', $pokemon_ID); // Add this line to bind the ID
+  $statement->bindValue(':insurance', $insurance);
   $statement->execute();
   $statement->closeCursor();
 }
@@ -54,6 +57,7 @@ function deletePokemonByID($pokemon_ID)
   $statement->closeCursor();
 
 }
+
 
 function getNurseProfileInfo($nurse_ID)
 {
@@ -88,6 +92,15 @@ function getNurseSpecialties($nurse_ID)
   return $results;
 }
 
+function searchPokemon($name)
+{
+  global $db;
+  $query = "select * from pokemon where name='".$name."'";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $results = $statement->fetchAll();   // fetch()
+  $statement->closeCursor();
+  return $results;
+}
+
 ?>
-
-
