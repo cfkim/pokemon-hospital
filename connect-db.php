@@ -49,12 +49,11 @@ $host = 'mysql01.cs.virginia.edu';
 $dbname = 'cfk6gxr';
 $dsn = "mysql:host=$host;dbname=$dbname"; 
 
-/* 
+/*
 $username = 'sarah'; 
 $password = 'databases1234';
 $host = 'localhost';
-$dbname = 'sarah';
-$dsn = "mysql:host=$host;dbname=$dbname";  */
+$dbname = 'sarah'; */
 
 ////////////////////////////////////////////
 
