@@ -88,10 +88,10 @@ function getNurseSpecialties($nurse_ID)
   return $results;
 }
 
-function searchPokemon($name, $date_of_birth)
+function searchPokemon($name)
 {
   global $db;
-  $query = "select * from pokemon where name=$name, date_of_birth=$date_of_birth";
+  $query = "select * from pokemon where name='".$name."'";
   $statement = $db->prepare($query);
   $statement->execute();
   $results = $statement->fetchAll();   // fetch()

@@ -6,7 +6,7 @@ require("pokemon-db.php");
 
 session_start();
 
-//error_reporting(0);
+error_reporting(0);
 
 #if not logged in, redirect to login page
 if (!isset($_SESSION['loggedin'])) {
@@ -14,7 +14,7 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-$list_of_pokemon = getAllPokemon();
+$list_of_pokemon = array();
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
    }
    else if (!empty($_POST['searchBtn']))
    {
-    $list_of_pokemon = searchPokemon($_POST['pokemon_name'], $_POST['date_of_birth']);   
+    $list_of_pokemon = searchPokemon($_POST['pokemon_name']);
    }
 }
 
@@ -79,11 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <form name="mainForm" action="patient-search.php" method="post">   
       <div class="row mb-3 mx-3">
         Pokemon name:
-        <input type="text" class="form-control" name="pokemon_name" value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
-      </div>
-      <div class="row mb-3 mx-3">
-        Date of Birth:
-        <input type="date" class="form-control" name="date_of_birth" value="<?php echo $_POST['date_of_birth_to_update'];?>"/>        
+        <input type="text" class="form-control" name="pokemon_name" required value="<?php echo $_POST['pokemon_name_to_update'];?>"/>        
       </div>
       <div class="row mb-3 mx-3">
         <input type="submit" value="Search" name="searchBtn" 
@@ -140,9 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
   <!-- <script src="script.js"></script>  -->
   
 </div> 
-<?php
-  include("footer.html");
-?>   
+ 
 </body>
 </html>
 
