@@ -39,7 +39,7 @@ $username = 'cfk6gxr';
 $password = 'FourCircles';
 $host = 'mysql01.cs.virginia.edu';
 $dbname = 'cfk6gxr';
-$dsn = "mysql:host=$host;dbname=$dbname"; 
+$dsn = "mysql:host=$host;dbname=$dbname";
 
 /*
 $username = 'sarah'; 
