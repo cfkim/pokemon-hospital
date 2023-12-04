@@ -82,8 +82,9 @@ $list_of_nurses = getAllNurses($search);
 </ul>
 
 <div class="container">
-  <h1>Pokemon Hospital Clinic</h1>
-
+    <div style="text-align: center;">
+    <img src="photos\nursesearch.png" height="300">
+    </div>
   <!-- <form name="mainForm" action="nursesearch.php" method="post">
       <input type="hidden" name="nurse_ID" value="<?php echo $_POST['nurse_ID_to_update'];?>">
       <div class="row mb-3 mx-3">
@@ -139,7 +140,9 @@ $list_of_nurses = getAllNurses($search);
     <input type="submit" value="Search">
 </form>
 
-<h3>List of Nurses</h3>
+<br>
+
+<h3><center>List of Nurses</center></h3>
 <div class="row justify-content-center">
 <table class="w3-table w3-bordered w3-card-4 center" style="width:70%">
   <thead>

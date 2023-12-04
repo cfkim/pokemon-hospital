@@ -1,4 +1,4 @@
-<!-- cite: https://codeshack.io/secure-login-system-php-mysql/ 
+<!-- citations: https://codeshack.io/secure-login-system-php-mysql/ 
 https://code.tutsplus.com/create-a-php-login-form--cms-33261t
 -->
 
@@ -6,12 +6,18 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Login</title>
+		<title>Pokemon Hospital</title>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-	</head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
 	<body>
 		<div class="login">
-			<h1>Login</h1>
+			<h1>Pokemon Hospital</h1>
+            <div style="text-align: center;">
+                <img src="photos\pokemon-center.png" height="150">
+            </div>
 			<form action="login.php" method="post">
 				<label for="username">
 					<i class="fas fa-user"></i>
@@ -37,7 +43,7 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
                 $username = $_POST['username'];
                 //$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
                 $password = $_POST['password'];
-                //echo $username, $password;
+                //echo $password;
                 $query = $db->prepare("select * from account WHERE username=:username");
                 $query->bindParam("username", $username, PDO::PARAM_STR);
                 $query->execute();
@@ -57,8 +63,6 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
                     }
                 }
             }
-            
-
         ?>
 
 	</body>
@@ -70,7 +74,8 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
             font-size: 16px;
         }
         body {
-            background-color: #ffffff;
+            /*background-color: #ffffff;*/
+            background-image: url('photos/bg.png');
             margin: 50px auto;
             text-align: center;
             width: 800px;

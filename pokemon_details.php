@@ -64,18 +64,20 @@ if (isset($_GET['id'])) {
 <ul>
   <li><a class="active" href="pokemonform.php">Home</a></li>
   <li><a href="myprofile.php">My Profile</a></li>
+  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="patient-search.php">Patient Search</a></li>
   <?php if ($is_charge_nurse[0]) : ?>
     <li><a href="nursesearch.php">Nurse Search</a></li>
   <?php endif; ?>
-  <li><a href="nurse.php">Nurse</a></li>
-  <li><a href="add-patient.php">Add Patient</a></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
 
 <div class="container">
-  <h1>Pokemon Hospital Clinic</h1>
-  <h2>Patient Profile</h2>
+    <!--<h1>Pokemon Hospital Clinic</h1>-->
+
+    <div style="text-align: center;">
+    <img src="photos\pokemon_details.png" height="300">
+    </div>
 
   <form action="pokemon_details.php" method="post">
     <input type="hidden" name="pokemon_ID_export" value="<?php echo $pokemon[0]['pokemon_ID']; ?>"/>
