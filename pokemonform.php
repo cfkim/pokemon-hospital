@@ -61,11 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <h3>User: <?php echo $_SESSION['user']['username'] ?></h3>
 
-<a href="myprofile.php">My Profile</a>
-<a href="logout.php">Logout</a>
+  <a href="myprofile.php">My Profile</a>
+  <a href="patient-search.php">Patient Search</a>
+  <a href="add-patient.php">Add New Patient</a>
+  <a href="logout.php">Logout</a>
 
 <div class="container">
-  <h1>Pokemon Hospital Clinic</h1>  
+  <h1>Pokemon Hospital Clinic</h1>
+  <h2>Nurse Landing</h2>  
 
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
  

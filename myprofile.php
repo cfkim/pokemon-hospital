@@ -22,10 +22,17 @@ $specialities = getNurseSpecialties($_SESSION['user']['nurse_ID'])
 <!DOCTYPE html>
 <html>
     <head>
-        <h3> My Profile </h3>
+        
+    
     </head>
 
     <body>
+        <a href="myprofile.php">My Profile</a>
+        <a href="patient-search.php">Patient Search</a>
+        <a href="add-patient.php">Add New Patient</a>
+        <a href="logout.php">Logout</a>
+        
+        <h3> My Profile </h3>
         <p>First Name: <?php echo $profile_info['name_first']; ?> </p>
         <p>Last Name: <?php echo $profile_info['name_last']; ?> </p>
         <p>Nurse ID: <?php echo $profile_info['nurse_ID']; ?> </p>

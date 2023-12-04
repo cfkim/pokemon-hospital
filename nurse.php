@@ -59,18 +59,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <h3>User: <?php echo $_SESSION['user']['username'] ?></h3>
 
-<a href="myprofile.php">My Profile</a>
-<a href="logout.php">Logout</a>
+
+
 
 <div class="container">
+
+  <a href="myprofile.php">My Profile</a>
+  <a href="patient-search.php">Patient Search</a>
+  <a href="add-patient.php">Add New Patient</a>
+  <a href="logout.php">Logout</a>
+
   <h1>Pokemon Hospital Clinic</h1>  
   <h2>Nurse Landing Page</h2>  
-
-  <div>
-    <a href="patient-search.php" class="btn btn-primary">Patient Search</a>
-    <a href="myprofile.php" class="btn btn-primary">My Profile</a>
-    <a href="add-patient.php" class="btn btn-primary">Add New Patient</a>
-  </div>
 
   <!-- <a href="pokemonform.php">Click to open the next page</a> -->
  
