@@ -2,7 +2,10 @@
 require("connect-db.php");
 require("pokemon-db.php");
 
+
+
 $list_of_pokemon = getAllPokemon();
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -79,11 +82,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <input type="submit" value="Add Patient" name="addBtn"
                 class="btn btn-primary" title="Add a patient to the pokemon health center" />
       </div>
+
       <div class="row mb-3 mx-3">
         <input type="submit" value="Confirm Update" name="confirmUpdateBtn"
                 class="btn btn-secondary" title="Update a pokemon into pokemon table" />
       </div>
     </form>
+
+    </form>     
+
 
 <hr/>
 <h3>List of Patients</h3>
@@ -115,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      <td><?php echo $pokemon['last_visit']; ?></td>
      <td><?php echo $pokemon['insurance']; ?></td>
     <td>
+
         <form action="pokemonform.php" method="post">
           <input type="submit" value="Update" name="updateBtn" class="btn btn-secondary"/></td>
           <input type="hidden" name="pokemon_ID_to_update" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
@@ -126,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <input type="hidden" name="insurance_to_update" value="<?php echo $pokemon['insurance']; ?>"/>
         </form>
     <td>
+
       <form action="pokemonform.php" method="post">
         <input type="submit" value="Delete" name="deleteBtn" class="btn btn-danger"/>
         <input type="hidden" name="pokemonID_to_delete" value="<?php echo $pokemon['pokemon_ID']; ?>"/>
