@@ -3,11 +3,11 @@
 ////////////////////////////////////////////
 
 /** F23, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
-// $username = 'root';                       // or your username
-// $password = 'FourCircles';     
-// $host = 'pokemon-clinic:us-east4:pokemon-db';       // e.g., 'cs4750:us-east4:db-demo'; 
-// $dbname = 'pokemon-clinic';           // e.g., 'guestbook';
-// $dsn = "mysql:unix_socket=/cloudsql/pokemon-clinic:us-east4:pokemon-db;dbname=$dbname";
+$username = 'root';                       // or your username
+$password = 'FourCircles';     
+$host = 'pokemon-clinic:us-east4:pokemon-db';       // e.g., 'cs4750:us-east4:db-demo'; 
+$dbname = 'pokemon-clinic';           // e.g., 'guestbook';
+$dsn = "mysql:unix_socket=/cloudsql/pokemon-clinic:us-east4:pokemon-db;dbname=$dbname";
       // e.g., "mysql:unix_socket=/cloudsql/cs4750:us-east4:db-demo;dbname=guestbook";
 // --------- to test, include app.yaml with the following code
 // runtime: php74
@@ -17,11 +17,11 @@
 ////////////////////////////////////////////
 
 /** F23, PHP (on local XAMPP or CS server) connect to MySQL instance (GCP) **/
-$username = 'root';
-$password = 'FourCircles';
-$host = '35.245.252.124';
-$dbname = 'pokemon-clinic';
-$dsn = "mysql:host=35.245.252.124;dbname=$dbname";
+// $username = 'root';
+// $password = 'FourCircles';
+// $host = '35.245.252.124';
+// $dbname = 'pokemon-clinic';
+// $dsn = "mysql:host=35.245.252.124;dbname=$dbname";
 
 ////////////////////////////////////////////
 

@@ -1,5 +1,9 @@
 # Use the PHP 8.1 runtime
 runtime: php81
 
-entrypoint: pokemonform.php
-
+handlers: 
+  - url: /photos
+    static_dir: photos
+  
+  - url: /css
+    static_dir: css

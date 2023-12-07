@@ -1,6 +1,35 @@
-<!-- citations: https://codeshack.io/secure-login-system-php-mysql/ 
-https://code.tutsplus.com/create-a-php-login-form--cms-33261t
--->
+<?php
+session_start();
+//echo "password_hash =" . password_hash("password1", PASSWORD_BCRYPT);
+require("connect-db.php");
+global $db;
+
+//when login button is clicked
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    //$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = $_POST['password'];
+    //echo $password;
+    $query = $db->prepare("select * from account WHERE username=:username");
+    $query->bindParam("username", $username, PDO::PARAM_STR);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    if (!$result) {
+        //checking if username exists
+        echo '<p class="error">Username and/or password is incorrect</p>';
+    } else {
+        //checking if password matches
+        if (password_verify($password, $result['password'])) {
+            $_SESSION['loggedin'] = TRUE;
+            $_SESSION['user'] = $result;
+            //echo '<p class="success">Congratulations, you are logged in!</p>';
+            header("Location: pokemonform.php");
+        } else {
+            echo '<p class="error">Username and/or password is incorrect</p>';
+        }
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -10,13 +39,13 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
 	<body>
 		<div class="login">
 			<h1>Pokemon Hospital</h1>
             <div style="text-align: center;">
-                <img src="photos\pokemon-center.png" height="150">
+                <img src="photos/pokemon-center.png" height="150">
             </div>
 			<form action="login.php" method="post">
 				<label for="username">
@@ -30,41 +59,6 @@ https://code.tutsplus.com/create-a-php-login-form--cms-33261t
 				<input type="submit" name="login" value="Login">
 			</form>
 		</div>
-
-        <?php
-            //echo "password_hash =" . password_hash("password1", PASSWORD_BCRYPT);
-            require("connect-db.php");
-            session_start();
-
-            global $db;
-
-            //when login button is clicked
-            if (isset($_POST['login'])) {
-                $username = $_POST['username'];
-                //$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                $password = $_POST['password'];
-                //echo $password;
-                $query = $db->prepare("select * from account WHERE username=:username");
-                $query->bindParam("username", $username, PDO::PARAM_STR);
-                $query->execute();
-                $result = $query->fetch(PDO::FETCH_ASSOC);
-                if (!$result) {
-                    //checking if username exists
-                    echo '<p class="error">Username and/or password is incorrect</p>';
-                } else {
-                    //checking if password matches
-                    if (password_verify($password, $result['password'])) {
-                        $_SESSION['loggedin'] = TRUE;
-                        $_SESSION['user'] = $result;
-                        //echo '<p class="success">Congratulations, you are logged in!</p>';
-                        header("Location: pokemonform.php");
-                    } else {
-                        echo '<p class="error">Username and/or password is incorrect</p>';
-                    }
-                }
-            }
-        ?>
-
 	</body>
 
 
